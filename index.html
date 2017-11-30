@@ -137,12 +137,12 @@ Compute probability of each song for M singers from test sample song dataset.
              Linear predictive coding (LPC) [20] can provide a very accurate spectral representation for speech sound. LPC coefficients are computed by using following equation:<br/>
 X(n)=--a(2)X(n--1) -- a(3)X(n-2)……--a(P+1)X(n--P)
      <br/>where p is the order of the polynomial,a=[1 a(2)… A(P+1)].</p>
-   </p>4. Dimension reduction<br/>
+   <p>4. Dimension reduction:<br/>
 Principal component analysis method is used to compute principal component which reduces the dimension of extracted audio features. It retains as much as possible variance in the audio features. Principal components are extracted by a linear transformation to a new set of features which are uncorrelated and are ordered according to their importance. Principal component is computed using singular value decomposition algorithm.</p>
-   <p>5. Model generation<br/>
+   <p>5. Model generation:<br/>
 In the proposed approach, playback singer model (PSM) is obtained using a different classification algorithm. The following models are generated: (1) Gaussian mixture model, (2) k-nearest neighbor model, (3) naïve Bayes classifier (NBC), (4) back propagation algorithm using neural network (BPNN), and (5) AdaBoost.M2 model.</p>
-   </p>6. Singer recognition<br/>
-In our proposed approach, singer recognition is carried out using trained models. Indian songs which are not used in trained models are given fortesting using various classification algorithms which leads to recognition of a singer.</p>
+   <p>6. Singer recognition:<br/>
+In our proposed approach, singer recognition is carried out using trained models. Indian songs which are not used in trained models are given for testing using various classification algorithms which leads to recognition of a singer.</p>
 					<!-- Stop edit here -->
 
 				</div>
