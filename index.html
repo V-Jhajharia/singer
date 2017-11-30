@@ -101,13 +101,13 @@
 						<!-- Start edit here  -->
 						<p>The report is organized as follows:<br/>
 
-	 1.Collection of N Indian audio songs of M singers.</p>
- <p class="indent">2.Compute x1, x2, x3 ……x53 audio feature vectors for each segment of audio portion. Where x1-x12 timbre audio feature vectors, x13-x24 pitch class, x25-x27 loudness, x28- x40 MFCC feature vectors, and x41-x53 LPC coefficients. These features are stored in S1 structure. Size of S1 structure is S x 53, where S is total number of segments. Total number of segments depend on length of audio portion and audio feature.<br/>
- 3.Mean removal technique is applied on S1 structure and result is stored in S2 structure.<br/>
- 4.Principal component analysis method is used on S2 structure to compute eigenvalue, eigenvector using single value decomposition (SVD) technique. Score is obtained. Result is stored in score structure which is divided into two parts (training dataset (80 %) and testing dataset (20 %)).<br/>
-5.PSM is obtained using back propagation and AdaBoost.M2 algorithm using neural network. PSM is also obtained using KNN, GMM, and naïve Bayes classifier.<br/>
-	6.Compute probability of each song for M singers from test sample song dataset.<br/>
- 	7.Return a recognize singer name which contains maximum probability among Msingers.</p>
+	 &emsp;1.Collection of N Indian audio songs of M singers.<br/>
+ &emsp;2.Compute x1, x2, x3 ……x53 audio feature vectors for each segment of audio portion. Where x1-x12 timbre audio feature vectors, x13-x24 pitch class, x25-x27 loudness, x28- x40 MFCC feature vectors, and x41-x53 LPC coefficients. These features are stored in S1 structure. Size of S1 structure is S x 53, where S is total number of segments. Total number of segments depend on length of audio portion and audio feature.<br/>
+ &emsp;3.Mean removal technique is applied on S1 structure and result is stored in S2 structure.<br/>
+ &emsp;4.Principal component analysis method is used on S2 structure to compute eigenvalue, eigenvector using single value decomposition (SVD) technique. Score is obtained. Result is stored in score structure which is divided into two parts (training dataset (80 %) and testing dataset (20 %)).<br/>
+&emsp;5.PSM is obtained using back propagation and AdaBoost.M2 algorithm using neural network. PSM is also obtained using KNN, GMM, and naïve Bayes classifier.<br/>
+	&emsp;6.Compute probability of each song for M singers from test sample song dataset.<br/>
+ 	&emsp;7.Return a recognize singer name which contains maximum probability among Msingers.</p>
 						<!-- Stop edit here -->
 
 					</div>
