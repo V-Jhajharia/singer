@@ -100,20 +100,13 @@
 
 						<!-- Start edit here  -->
 						The report is organized as follows:
-						
- 1. Collection of N Indian audio songs of M singers.
-						
- 2. Compute x1, x2, x3 ……x53 audio feature vectors for each segment of audio portion. Where x1-x12 timbre audio feature vectors, x13-x24 pitch class, x25-x27 loudness, x28- x40 MFCC feature vectors, and x41-x53 LPC coefficients. These features are stored in S1 structure. Size of S1 structure is S x 53, where S is total number of segments. Total number of segments depend on length of audio portion and audio feature.
-						
- 3. Mean removal technique is applied on S1 structure and result is stored in S2 structure.
-						
- 4. Principal component analysis method is used on S2 structure to compute eigenvalue, eigenvector using single value decomposition (SVD) technique. Score is obtained. Result is stored in score structure which is divided into two parts (training dataset (80 %) and testing dataset (20 %)).
-						
- 5. PSM is obtained using back propagation and AdaBoost.M2 algorithm using neural network. PSM is also obtained using KNN, GMM, and naïve Bayes classifier.
-						
- 6. Compute probability of each song for M singers from test sample song dataset.
-						
- 7. Return a recognize singer name which contains maximum probability among Msingers.
+ Collection of N Indian audio songs of M singers.
+ Compute x1, x2, x3 ……x53 audio feature vectors for each segment of audio portion. Where x1-x12 timbre audio feature vectors, x13-x24 pitch class, x25-x27 loudness, x28- x40 MFCC feature vectors, and x41-x53 LPC coefficients. These features are stored in S1 structure. Size of S1 structure is S x 53, where S is total number of segments. Total number of segments depend on length of audio portion and audio feature.
+ Mean removal technique is applied on S1 structure and result is stored in S2 structure.
+ Principal component analysis method is used on S2 structure to compute eigenvalue, eigenvector using single value decomposition (SVD) technique. Score is obtained. Result is stored in score structure which is divided into two parts (training dataset (80 %) and testing dataset (20 %)).
+PSM is obtained using back propagation and AdaBoost.M2 algorithm using neural network. PSM is also obtained using KNN, GMM, and naïve Bayes classifier.
+Compute probability of each song for M singers from test sample song dataset.
+ Return a recognize singer name which contains maximum probability among Msingers.
 						<!-- Stop edit here -->
 
 					</div>
@@ -130,12 +123,12 @@ Song collection
 
 Segmentation
 <img src="https://static-content.springer.com/image/art%3A10.1186%2Fs13636-015-0062-9/MediaObjects/13636_2015_62_Fig2_HTML.gif"> 
-Fig. Segmentation process from Indian songs
+<p>Fig. Segmentation process from Indian songs.</p>
 
-Feature extraction
-      a).Mel frequency cepstral coefficients
-           MFCC are the most useful coefficients which are used for speech recognition because of their ability to represent speech amplitude spectrum in a compact form. Figure below shows the process of creating MFCC features. Speech signal is divided into frames by applying a hamming windowing function at fixed intervals. Cepstral feature vectors are generated using each frame.
- 
+<p>Feature extraction
+      <br/>a).Mel frequency cepstral coefficients
+           MFCC are the most useful coefficients which are used for speech recognition because of their ability to represent speech amplitude spectrum in a compact form. Figure below shows the process of creating MFCC features. Speech signal is divided into frames by applying a hamming windowing function at fixed intervals. Cepstral feature vectors are generated using each frame.</p>
+<img src="https://static-content.springer.com/image/art%3A10.1186%2Fs13636-015-0062-9/MediaObjects/13636_2015_62_Fig4_HTML.gif"> 
   Fig. The process of creating MFCC coefficients
 
       
@@ -143,13 +136,10 @@ Feature extraction
              Linear predictive coding (LPC) [20] can provide a very accurate spectral representation for speech sound. LPC coefficients are computed by using following equation.
 X(n)=--a(2)X(n--1) -- a(3)X(n-2)……--a(P+1)X(n--P)
      where p is the order of the polynomial,a=[1 a(2)… A(P+1)].
-					
    4. Dimension reduction
 Principal component analysis method is used to compute principal component which reduces the dimension of extracted audio features. It retains as much as possible variance in the audio features. Principal components are extracted by a linear transformation to a new set of features which are uncorrelated and are ordered according to their importance. Principal component is computed using singular value decomposition algorithm.
-					
    5. Model generation
 In the proposed approach, playback singer model (PSM) is obtained using a different classification algorithm. The following models are generated: (1) Gaussian mixture model, (2) k-nearest neighbor model, (3) naïve Bayes classifier (NBC), (4) back propagation algorithm using neural network (BPNN), and (5) AdaBoost.M2 model.
-					
    6. Singer recognition
 In our proposed approach, singer recognition is carried out using trained models. Indian songs which are not used in trained models are given for testing using various classification algorithms which leads to recognition of a singer.
 					<!-- Stop edit here -->
@@ -202,11 +192,7 @@ In our proposed approach, singer recognition is carried out using trained models
 						<!-- Stop edit here -->
 
 					</div>
-					
-				</div>
-				
-			</div>
-			<div class="section">
+				</div>class="section">
 				<div class="heading">5.References</div>
 					<div class="text">
 
