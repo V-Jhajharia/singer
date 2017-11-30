@@ -1,0 +1,94 @@
+from scipy.io import wavfile
+import csv
+import wave
+import struct
+import math
+import numpy
+from scipy.fftpack import rfft
+from scipy.fftpack import fft
+from scipy.fftpack.realtransforms import dct
+from scipy.signal import fftconvolve
+
+
+def mfccInitFilterBanks(fs, nfft):
+    """
+    Computes the triangular filterbank for MFCC computation (used in the stFeatureExtraction function before the stMFCC function call)
+    This function is taken from the scikits.talkbox library (MIT Licence):
+    https://pypi.python.org/pypi/scikits.talkbox
+    """
+
+    # filter bank params:
+    lowfreq = 133.33
+    linsc = 200/3.
+    logsc = 1.0711703
+    numLinFiltTotal = 13
+    numLogFilt = 27
+
+    if fs < 8000:
+        nlogfil = 5
+
+    # Total number of filters
+    nFiltTotal = numLinFiltTotal + numLogFilt
+
+    # Compute frequency points of the triangle:
+    freqs = numpy.zeros(nFiltTotal+2)
+    freqs[:numLinFiltTotal] = lowfreq + numpy.arange(numLinFiltTotal) * linsc
+    freqs[numLinFiltTotal:] = freqs[numLinFiltTotal-1] * logsc ** numpy.arange(1, numLogFilt + 3)
+    heights = 2./(freqs[2:] - freqs[0:-2])
+
+    # Compute filterbank coeff (in fft domain, in bins)
+    fbank = numpy.zeros((nFiltTotal, nfft))
+    nfreqs = numpy.arange(nfft) / (1. * nfft) * fs
+
+    for i in range(nFiltTotal):
+        lowTrFreq = freqs[i]
+        cenTrFreq = freqs[i+1]
+        highTrFreq = freqs[i+2]
+
+        lid = numpy.arange(numpy.floor(lowTrFreq * nfft / fs) + 1, numpy.floor(cenTrFreq * nfft / fs) + 1, dtype=numpy.int)
+        lslope = heights[i] / (cenTrFreq - lowTrFreq)
+        rid = numpy.arange(numpy.floor(cenTrFreq * nfft / fs) + 1, numpy.floor(highTrFreq * nfft / fs) + 1, dtype=numpy.int)
+        rslope = heights[i] / (highTrFreq - cenTrFreq)
+        fbank[i][lid] = lslope * (nfreqs[lid] - lowTrFreq)
+        fbank[i][rid] = rslope * (highTrFreq - nfreqs[rid])
+
+    return fbank, freqs
+
+
+def stMFCC(X, fbank, nceps):
+    """
+    Computes the MFCCs of a frame, given the fft mag
+    ARGUMENTS:
+        X:        fft magnitude abs(FFT)
+        fbank:    filter bank (see mfccInitFilterBanks)
+    RETURN
+        ceps:     MFCCs (13 element vector)
+    Note:    MFCC calculation is, in general, taken from the scikits.talkbox library (MIT Licence),
+    #    with a small number of modifications to make it more compact and suitable for the pyAudioAnalysis Lib
+    """
+    eps = 0.0000001
+    mspec = numpy.log10(numpy.dot(X, fbank.T)+eps)
+    ceps = dct(mspec, type=2, norm='ortho', axis=-1)[:nceps]
+    return ceps
+i=0
+[fs, X] = wavfile.read('Aap To Aise Na The - Tu Is Tarah Se.wav')
+dur=len(X)/fs
+ceps = open("mfcc.txt", "w")
+columnTitleRow ="M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11,M12,M13 \n"
+ceps.write(columnTitleRow)
+    
+while(i+5)<180:
+    seg=X[i:(i+5)]
+    [fbank, freqs]= mfccInitFilterBanks(fs, 2)
+    segmfcc=stMFCC(seg, fbank, 13)
+    ceps.write(segmfcc)
+    segmfcc=0
+    i=i+5
+    ceps.write("\n")
+
+ceps.close()
+
+
+#i=0
+#for i in range (i,i+4) and (i+4)<=179 and (i+4)<=l-1:
+
