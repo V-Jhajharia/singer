@@ -129,7 +129,25 @@
 
 <p>3.Feature extraction
       <br/>&emsp;a).Mel frequency cepstral coefficients:
-           <br/> &emsp;&emsp;MFCC are the most useful coefficients which are used for speech recognition because of their ability to represent speech amplitude spectrum in a compact form. Figure below shows the process of creating MFCC features. Speech signal is divided into frames by applying a hamming windowing function at fixed intervals. Cepstral feature vectors are generated using each frame.</p>
+           <br/> &emsp;&emsp;MFCC are the most useful coefficients which are used for speech recognition because of their ability to represent speech amplitude spectrum in a compact form. Figure below shows the process of creating MFCC features. Speech signal is divided into frames by applying a hamming windowing function at fixed intervals. Cepstral feature vectors are generated using each frame.
+	<br/>Steps involved in its calculation are as follows:
+ Preprocessing of the wav-file is the first step. It includes pre-emphasis, normalization and dc offset
+removal.
+ The Fourier transform of a windowed and framed signal is calculated.
+ Triangular overlapping windows are used to map the power of the spectrum obtained above onto the
+Mel scale.
+ Logs of the powers at each of the Mel frequencies are found.
+ Discrete cosine transform (DCT) of the list of Mel log powers is taken.
+ The MFCCs are the amplitude of the resulting spectrum. First thirteen coefficients are saved.
+Conversion from linear frequency scale to the Mel scale frequency Mf
+is achieved using the following equation
+𝑚𝑓 = 2595 𝑙𝑜𝑔10(1 +
+𝑓
+700
+) (1)
+Where, f is frequency in hertz in linear scale.
+	    </p>
+	
 <img src="https://static-content.springer.com/image/art%3A10.1186%2Fs13636-015-0062-9/MediaObjects/13636_2015_62_Fig4_HTML.gif"> 
   <p>Fig. The process of creating MFCC coefficients</p>
 
