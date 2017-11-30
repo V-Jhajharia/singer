@@ -152,7 +152,17 @@ Mel scale.
 
       
      <p>b).Linear predictive coding coefficients:<br/>
-             &emsp;Linear predictive coding (LPC) [20] can provide a very accurate spectral representation for speech sound. LPC coefficients are computed by using following equation:<br/>
+	     <be/>&emsp;LPC is a model for speech signal production based on the assumption that the speech signal is
+produced by a very specific model [5].All LPC variants are based on the same simple model of an excitation
+signal and a filter.LPC determines the coefficients of a forward linear predictor by minimizing the prediction
+error in the least squares sense. It has applications in filter design and speech coding.
+<br/>A closer inspection of this system shows that speech can be modeled as a pth order autoregressive process, where
+the present sample, x(k) depends on the linear combination of past p samples added with a stochastic or random
+component that represents noise. In other words, it is an all-pole FIR filter with Gaussian noise as input.
+<br/>Where ai are the linear prediction coefficients (LPCs) and u(k), the process noise, is a zero-mean
+Gaussian noise with variance σ2
+u .
+             <br/>&emsp;Linear predictive coding (LPC) can provide a very accurate spectral representation for speech sound. LPC coefficients are computed by using following equation:<br/>
 X(n)=--a(2)X(n--1) -- a(3)X(n-2)……--a(P+1)X(n--P)
      <br/>where p is the order of the polynomial,a=[1 a(2)… A(P+1)].</p>
    <p>4. Dimension reduction:<br/>
